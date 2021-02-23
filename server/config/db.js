@@ -3,18 +3,11 @@
 const mongoose = require('mongoose');
 
 const connectDB = async () => {
-  try {
-    const conct = await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useCreateIndex: true,
-      useUnifiedTopology: true
-    });
-
-    console.log(`MongoDB Connected: ${conct.connection.host}`);
-  } catch (err) {
-    console.log(`Error: ${err.message}`);
-    process.exit(1);
-  }
+  mongoose.connect('mongodb+srv://admin:EdcRfv78@coursoc.84ozh.mongodb.net/CoursOC?retryWrites=true&w=majority',
+      { useNewUrlParser: true,
+        useUnifiedTopology: true })
+      .then(() => console.log('Connexion à MongoDB réussie !'))
+      .catch(() => console.log('Connexion à MongoDB échouée !'))
 }
 
 module.exports = connectDB;
